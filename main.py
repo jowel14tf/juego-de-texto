@@ -1,427 +1,237 @@
-import time
-#importando objetos
-from objetos.espadas import *
-from personajes.personaje import *
-from enemigos.soldado import *
-from habilidad.habilidades import *
-from enemigos.ogro import ogroo
-from objetos.arco import arcoo
-#advertencia
-print("nota: ignora los NONE que aparecen en la terminal")
-time.sleep(1)
-#comienzo 
-print('capitulo 1 el comienzo de un heroe')
-time.sleep(1)
-nombre = input("cual es tu nombre")
-nivel = 1
-exp = 0
-#decide entre si o no
-time.sleep(1)
-eleccion = input(f"bueno... {nombre} quieres usar la espada ? si o no")
-time.sleep(1)
-if eleccion == " si" or eleccion == 'si':
-    player = personaje(nombre, 100, sword())
-    print("bien! pues aqui comienza tu aventura")
-    time.sleep(0.5)
-else:
-    print("pues aqui acaba el juego ¯ \ _ (ツ) _ / ¯ ")
+from time import sleep
+from personajes.player import personaje
+from objetos.armas import espadaVieja
+from enemigos.soldado import soldadoF1
 
+print('capitulo 1 el comienzo de un heroe y sus enseñansas')
+sleep(1)
 
-
-
-soldado = enemigo("soldado", 85, 25)
-
-#el sistema para que se ejecute una batalla
-def ganaste(verificador):
-    gano = verificador
-    return gano
-def batalla_soldadov_1(jugador,enemigo):
-    print("no puedes usar mas de 3 vez el especial o si no te tiraremos un error")
-    time.sleep(0.5)
-    print("iniciaras primero")
-    time.sleep(0.5)
-    contador = 0
-    actualizador = False
-    while jugador.vida > 0 and enemigo.vida > 0:
-
-        if contador > 3:
-            time.sleep(1)
-            raise ValueError("te has pasado de intentos y tendras que iniciar de CERO")
-            
-        time.sleep(0.5)
-        eleccion_batalla = input(f'que ataques haras ? remolino / ataque normal / especial')
-            
-        if eleccion_batalla == "remolino" or eleccion_batalla == ' remolino':
-            if sword.remolino(True) == True: 
-                enemigo.vida = enemigo.vida - sword.remolino_o
-                time.sleep(0.5)
-                print(f"la vida del enemigo ahora es: {enemigo.vida}")
-                actualizador = True
-
-        elif eleccion_batalla == 'ataque normal' or eleccion_batalla == ' ataque normal':
-            if sword.ataque_normal(True) == True:
-                enemigo.vida = enemigo.vida - sword.ataque_normal_o
-                time.sleep(0.5)
-                print(f'la vida del enemigo ahora es: {enemigo.vida}')
-                actualizador = True
-
-        elif eleccion_batalla == 'especial' or eleccion_batalla == ' especial':
-            contador = contador + 1
-            if sword.especial(True) == True:
-                enemigo.vida = enemigo.vida - sword.especial_o
-                time.sleep(0.5)
-                print(f'la vida del enemigo ahora es: {enemigo.vida}')
-                actualizador = True
-        else:
-            print("no hay ningun ataque con ese nombre!")
-
-        if actualizador == True:
-            time.sleep(0.5)
-            print(f"ahora le toca al {enemigo.nombre} atacar ")
-            enemigo.atacar()
-            if enemigo.atacar() == True:
-                player.vida = player.vida - enemigo.ataque
-                time.sleep(0.5)
-                print(f"ahora tu vida es: {player.mostrar_vida()}")
-                actualizador = False
-        
-        if enemigo.vida <= 0:
-            time.sleep(0.5)
-            print("Bien ganaste a tu primer enemigo!!! \n tu vida esta con una leve mejora")
-            time.sleep(0.5)
-            print("subiste de nivel a nivel de 2")
-            player.restablecer_vida(player)
-            ganaste(True)
-            break;
-
-        elif player.vida <= 0:
-            time.sleep(0.5)
-            print("Que mal perdiste... \n pero aun es muy temprano para rendirte!")
-            time.sleep(1)
-            print("intentemoslo otra vez!")
-            player.restablecer_vida(player)
-            enemigo.restablecer_vida(enemigo)
-            ganaste(False)
-
-eleccion = input(f'un {soldado.nombre} quiere atacar que vas a hacer?, luchar o huir')
-time.sleep(0.9)
-if eleccion == "luchar" or eleccion == ' luchar':
-    batalla_soldadov_1(player, soldado)
-
-elif eleccion == "huir" or eleccion == " huir":
-    print("no seas cobarde... \n ENFRENTATE")
-    batalla_soldadov_1(player, soldado)
-
-else:
-    print('no hay una opcion con ese nombre\n intentalo de nuevo')
-    eleccion = input(f'un {soldado.nombre} quiere atacar que vas a hacer?, luchar o huir')
-    eleccion = input(f'un {soldado.nombre} quiere atacar que vas a hacer?, luchar o huir')
-    eleccion = input(f'un {soldado.nombre} quiere atacar que vas a hacer?, luchar o huir')
-
-
-#mejoras
-
-if  ganaste(True) == True:
-    player.vida = 120
-    print("tu recompensas son: el plus, la mejora de vida")
-    time.sleep(1)
-    print(f"ya que ganaste ahora tu vida vale {player.vida}")
-    time.sleep(1)
-    print("desbloqueaste una nueva habilidad llamada plus!!! \n esta se podra activar con un ataque ")
-    time.sleep(1)
-    print("por ejemplo remolino / plus")
-    time.sleep(1)
-    print("el plus lo que hace es que el ataque que pongas recibira 5 de dano extra ")
-    time.sleep(1)
-
-player.subir_nivel(2)
-print(f"tu nivel ahora es: {player.nivel}")
-
-habilidad = [
-    ["tienes la habilidad plus"],
-    ["tienes la habilidad omega"],
-    ["tienes la habilidad ultra"],
-    ["tienes la habilidad ultraplus"],
-]
-
-
-print("despues de vencer al soldado se te desbloquean algunos camino para recorer ")
-time.sleep(1)
-decicion = input("izquierda o derecha")
-time.sleep(1)
-
-def ganaste(verificador):
-    gano = verificador
-    return gano
-
-def batalla_ogro(jugador,enemigo):
-    print("no puedes usar mas de 3 vez el especial o si no te tiraremos un error")
-    time.sleep(0.5)
-    print("iniciaras primero")
-    time.sleep(0.5)
-    contador = 0
-    actualizador = False
-    while jugador.vida > 0 and enemigo.vida > 0:
-
-        if contador > 3:
-            time.sleep(1)
-            raise ValueError("te has pasado de intentos y tendras que iniciar de CERO")
-            
-        time.sleep(0.5)
-        eleccion_batalla = input(f"""
-que ataque haras:
-
-sin habilidad:        con habilidad:
-
-remolino              remolino / plus  
-ataque normal         ataque normal / plus 
-especial              especial / plus
-
-""")
-            
-        if eleccion_batalla == "remolino" or eleccion_batalla == ' remolino':
-            if sword.remolino(True) == True: 
-                enemigo.vida = enemigo.vida - sword.remolino_o
-                time.sleep(0.5)
-                print(f"la vida del enemigo ahora es: {enemigo.vida}")
-                actualizador = True
-
-        elif eleccion_batalla == 'ataque normal' or eleccion_batalla == ' ataque normal':
-            if sword.ataque_normal(True) == True:
-                enemigo.vida = enemigo.vida - sword.ataque_normal_o
-                time.sleep(0.5)
-                print(f'la vida del enemigo ahora es: {enemigo.vida}')
-                actualizador = True
-
-        elif eleccion_batalla == 'especial' or eleccion_batalla == ' especial':
-            contador = contador + 1
-            if sword.especial(True) == True:
-                enemigo.vida = enemigo.vida - sword.especial_o
-                time.sleep(0.5)
-                print(f'la vida del enemigo ahora es: {enemigo.vida}')
-                actualizador = True
-
-        elif eleccion_batalla == " remolino / plus" or eleccion_batalla == "remolino / plus":
-            if sword.remolino(True) == True:
-                sword.remolino_o = sword.remolino_o + habilidades.plus
-                enemigo.vida = enemigo.vida - sword.remolino_o
-                time.sleep(0.5)
-                print(f"la vida del enemigo ahora es: {enemigo.vida}")
-                actualizador = True
-                sword.remolino_o -= habilidades.plus
-                
-
-        elif eleccion_batalla == " ataque normal / plus" or eleccion_batalla == "ataque normal / plus":
-            if sword.ataque_normal(True) == True:
-                sword.ataque_normal_o = sword.ataque_normal_o + habilidades.plus
-                enemigo.vida = enemigo.vida - sword.ataque_normal_o
-                time.sleep(0.5)
-                print(f"la vida del enemigo ahora es: {enemigo.vida}")
-                actualizador = True
-                sword.ataque_normal_o -= habilidades.plus
-
-        elif eleccion_batalla == "especial / plus" or eleccion_batalla == " especial / plus":
-            contador = contador + 1
-            if sword.especial(True) == True:
-                sword.especial_o = sword.especial_o + habilidades.plus
-                enemigo.vida = enemigo.vida - sword.especial_o
-                time.sleep(0.5)
-                print(f"la vida del enemigo ahora es: {enemigo.vida}")
-                actualizador = True
-                sword.especial_o -= habilidades.plus
-
-        else:
-            print("no hay ningun ataque con ese nombre!")
-            time.sleep(0.5)
-        if actualizador == True:
-            time.sleep(0.5)
-            print(f"ahora le toca al {enemigo.nombre} atacar ")
-            enemigo.garrotazo(self=ogroo)
-            if enemigo.garrotazo(self=ogroo) == True:
-                player.vida = player.vida - enemigo.ataque
-                time.sleep(0.5)
-                print(f"ahora tu vida es: {player.mostrar_vida()}")
-                actualizador = False
-        
-        if enemigo.vida <= 0:
-            time.sleep(0.5)
-            print("Bien le ganaste al ogro!!! \n tu vida esta con una leve mejora")
-            time.sleep(0.5)
-            print("mejoraste de nivel a nivel 3")
-            player.restablecer_vida(player)
-            ganaste(True)
-            break;
-
-        elif player.vida <= 0:
-            time.sleep(0.5)
-            print("Que mal perdiste... \n pero aun es muy temprano para rendirte!")
-            time.sleep(1)
-            print("intentemoslo otra vez!")
-            player.restablecer_vida(player)
-            enemigo.restablecer_vida(enemigo)
-            ganaste(False)
-
-
-
-def ganaste(verificador):
-    gano = verificador
-    return gano
-def batalla__ogro_arco(jugador,enemigo):
-    print("no puedes usar mas de 3 veces el flechazo sangriento por que si no te tiraremos un error")
-
-    print("iniciaras primero")
-    actualizador = False
-    while jugador.vida > 0 and enemigo.vida > 0:
-        arcoo.flechas = 10
-        eleccion = input("""
-que tipo de flechazo vas a elegir:
-
-sin habilidad                 con hablidad
-
-flechazo                      flechazo / plus
-flechazo preciso              flechazo preciso / plus
-flechazo sangriento           flechazo sangriento / plus
-
+nombre = input("""cual es tu nombre aventurero:
 """)
 
-        if eleccion == "flechazo" or eleccion == " flechazo":
-            arco.flechazo()
-            actualizador = True
-            if arco.flechazo() == True:
-                enemigo.vida -= 20
-                time.sleep(1)
-                print(f"la vida del enemigo ahora es: {enemigo.vida}")
+espada = espadaVieja()
 
-        elif eleccion == "flechazo preciso" or eleccion == " flechazo preciso":
-            arco.flechazo_preciso()
-            actualizador = True
-            if arco.flechazo_preciso() == True:
-                enemigo.vida -= 25
-                time.sleep(1)
-                print(f"la vida del enemigo ahora es: {enemigo.vida}")
-                
-        elif eleccion == "flechazo sangriento" or eleccion == " flechazo sangriento":
-            arco.flechazo_sangriento()
-            actualizador = True
-            if arco.flechazo_sangriento() == True:
-                enemigo.vida -= 40
-                time.sleep(1)
-                print(f"la vida del enemigo ahora es: {enemigo.vida}")
-                
-        elif eleccion == "flechazo / plus" or eleccion == " flechazo / plus":
-            arco.flechazo()
-            actualizador = True
-            if arco.flechazo() == True:
-                enemigo.vida -= 25
-                time.sleep(1)
-                print(f'la vida del enemigo ahora es: {enemigo.vida}')
-                
-        elif eleccion == "flechazo preciso / plus" or eleccion == " flechazo / plus":
-            arco.flechazo_preciso()
-            actualizador = True
-            if arco.flechazo_preciso() == True:
-                enemigo.vida -= 30
-                time.sleep(1)
-                print(f'la vida del enemigo ahora es: {enemigo.vida}')
-                
-        elif eleccion == "flechazo sangriento / plus" or eleccion == ' flechazo / plus':
-            arco.flechazo_sangriento()
-            actualizador = True
-            if arco.flechazo_sangriento() == True:
-                enemigo.vida -= 45
-                time.sleep(1)
-                print(f'la vida del enemigo ahora es: {enemigo.vida}')
+jugador = personaje(nombre, espada)
+
+soldado = soldadoF1()
+
+print(f"ok {nombre} tu primera arma sera la {espada.nombre}")
+"""
+print("es hora de enfrentarte a tu primer enemigo")
+sleep(2)
+
+print("es un soldado renegado y tiene cierta informacion")
+sleep(2)
+
+print('que nos puedes perjudicar asi que...')
+sleep(2)
+
+print('hay que mandarlo a dormir')
+sleep(2)
+print("despues de tardar 1 hora lo encuentra asi que la batalla comienza")
+"""
+def battallaEspadaVieja(jugador,enemigo):
+    global ganador
+    global ataco
+    global SeCuro
+    ataco = False
+    ganador = False
+    SeCuro = False
+    while jugador.vida >= 0 or enemigo.vida >= 0:
+        
+        if jugador.vida <= 0:
+            print("perdiste...")
+            eleccion = input(f"quieres volver a intentarlo {jugador.nombre} otra vez y/n")
+
+            if eleccion == "y" or eleccion == " y":
+                jugador.restablecer_vida()
+                enemigo.restablecer_vida()
+                espada.restablecer_energia()
+                print(f"{jugador.nombre} tiene su vida en {jugador.vida}")
+                print(f"{enemigo.nombre} tiene su vida en {enemigo.vida}")
+
+            elif eleccion == "n" or eleccion == " n":
+                print("ok bye")
+                break;
+        
+        print("es tu turno")
+
+        eleccion = int(input(f"""
+1) atacar                                               la vida del jugador es: {jugador.vida}
+2) curarse ---> {jugador.pocion}                                      la vida del enemigo es: {enemigo.vida}       
+"""))
+        
+        if eleccion == 1:
+            ataques = int(input(f"""
+1) ataque normal ---> {espada.ataqueNormal}
+2)   especial ------> {espada.especial}
+"""))
+            if ataques == 1:
+                espada.ejecucionAtaque(enemy=enemigo, player=jugador)
+                ataco = True
+            elif ataques == 2:
+                espada.ejeucionEspecial(enemigo, jugador)
+                ataco = True
+            else:
+                print("valor erroneo")
+                continue
+        
+        elif eleccion == 2:
+            sleep(1)
+            print("ok has elegido curarte")
+            sleep(1)
+            jugador.curacion()
+            SeCuro = True
+
         else:
-            print("no has hecho ningun ataque")
-        
+            print("has introducido un valor erroneo por favor intentar de nuevo")
+            continue
 
-        if actualizador == True:
-            print("ok")
-            time.sleep(1)
-            print('ok')
-            time.sleep(1)
-            print('ok')
-            time.sleep(1)
-            print(f"es el turno del {ogroo.nombre}")
-            time.sleep(0.5)
-            print(f"ahora le toca al {enemigo.nombre} atacar ")
-            enemigo.garrotazo(self=ogroo)
-            if enemigo.garrotazo(self=ogroo) == True:
-                player.vida = player.vida - enemigo.ataque
-                time.sleep(0.5)
-                print(f"ahora tu vida es: {player.mostrar_vida()}")
-                actualizador = False
-        
         if enemigo.vida <= 0:
-            time.sleep(1)
-            print("Bien le ganaste al ogro !!! \n tu vida esta con una mejora ahora tu vida es 140 :)")
-            time.sleep(1)
-            print("mejoraste de nivel a nivel 3")
-            ganaste(True)
-            break;
-
-        elif player.vida <= 0:
-            time.sleep(1)
-            print('perdiste... \n pero aun es muy temprano para perder')
-            player.restablecer_vida(player)
-            enemigo.restablecer_vida(enemigo)
-            ganaste(False)
-
-
-if decicion == 'izquierda' or decicion == " izquierda":
-    time.sleep(1)
-    print("has elegido la izquierda \n y ahora te toca enfrentarte contra un ogro ¯ \ _ (ツ) _ / ¯ ")
-    time.sleep(1)
-    eleccion = input("quieres ver las caracteristicas del ogro si/no")
-    if eleccion == "si" or eleccion == " si":
-        #ogro = ogroo("ogro", 115, 30)
-        time.sleep(1)
-        print(ogroo.InformacionOgroo(self=ogroo))
-        batalla_ogro(player, ogroo)
-    else:
-        batalla_ogro(player, ogroo)
-
-elif decicion == "derecha" or decicion == " derecha":
-    time.sleep(1)
-    print("elegiste bien!!! te encontraste un arco")
-    arco = arcoo()
-    time.sleep(1)
-    print("pero te encuentras con un ogro...")
-    time.sleep(1)
-    eleccion = input("quieres ver las caracteristicas del ogro si/no")
-
-    if eleccion == "si" or eleccion == " si":
-        #ogro = ogroo("ogro", 115, 30)
-        print(ogroo.InformacionOgroo(self=ogroo))
-        time.sleep(1)
-
-        batalla__ogro_arco(player, ogroo)
-
-    else:
-        batalla__ogro_arco(player, ogroo)
+            print(f"bien ganaste {jugador.nombre}")
+            jugador.restablecer_vida()
+            espada.restablecer_energia()
+            enemigo.vida = 110
+            ganador = True
+            if ganador == True:
+                print(f"bien le ganaste al {enemigo.nombre}")
+                sleep(1)
+                print("subiste de nivel ")
+                jugador.exp = 100
+                jugador.subir_nivel()
+                sleep(1)
+                eleccion = input("pero te voy a hacer una pregunta en verdad crees que lo derrotaste y/y")
+                sleep(0.5)
+                print('.')
+                sleep(0.5)
+                print('.')
+                sleep(0.5)
+                print('.')
+                sleep(0.5)
+                if eleccion == "y" or eleccion == " y":
+                    print(f"{jugador.nombre} pues...")
+                    sleep(1.5)
+                    print("quien se esta levantando detras tuyo ???")
+                    sleep(2.2)
+                    print("ten buena suerte con mi ataque ESPECIAL ")
+                break;
+        
+        if ataco == True or SeCuro == True:
+            print("ahora el soldado te atacara")
+            enemigo.RestarAtaquesNormales(player=jugador, enemigo=soldado)
+            ataco = False
+            SeCuro = False
         
 
+battallaEspadaVieja(jugador, soldado)
+
+from objetos.armas import espadaMetalica
+from enemigos.soldado import soldadoF2
+import random
+
+espadav2 = espadaMetalica()
+soldadov2 = soldadoF2()
+
+if jugador.nivel == 1:
+    def batallaEspadaMetalica(jugador, enemigo):
+        print("bien has conseguido una arma decente ")
+        sleep(2)
+        print(f'has conseguido {espadav2.nombre}')
+        sleep(2)
+        print("esta arma tiene tiene mas daño y tiene un habilidad nueva \nllamada modo furia")
+        sleep(1)
+
+        eleccion = input("quieres activar el modo furia de la espada y/n")
+        if eleccion == 'y' or eleccion == ' y':
+            espadav2.PocionFuria(10, 30)
+        else:
+            print("no tienes activado el modo furia")
+        
+        ataco = False
+        ganador = False
+        SeCuro = False
+        
+        while jugador.vida > 0 or enemigo.vida > 0:
+
+            if jugador.vida <= 0:
+                print("perdiste...")
+                eleccion = input(f"quieres volver a intentarlo {jugador.nombre} otra vez y/n")
+
+                if eleccion == "y" or eleccion == " y":
+                    jugador.restablecer_vida()
+                    enemigo.restablecer_vida()
+                    espadav2.restablecer_energia()
+                    print(f"{jugador.nombre} tiene su vida en {jugador.vida}")
+                    print(f"{enemigo.nombre} tiene su vida en {enemigo.vida}")
+
+                elif eleccion == "n" or eleccion == " n":
+                    print("ok bye")
+                    break;
+            
+            print("es tu turno")
+
+            eleccion = int(input(f"""
+1) atacar                                               la vida del jugador es: {jugador.vida}
+2) curarse ---> {jugador.pocion}                                      la vida del enemigo es: {enemigo.vida}       
+"""))
+            if eleccion == 1:
+                ataques = int(input(f"""
+1) ataque normal ---> {espadav2.ataqueNormal}
+2)   especial ------> {espadav2.especial}
+"""))
+                if ataques == 1:
+                    espadav2.ejecucionAtaque(enemy=enemigo, player=jugador)
+                    ataco = True
+
+                elif ataques == 2:
+                    espadav2.ejeucionEspecial(enemigo, jugador)
+                    ataco = True
+
+                else:
+                    print("valor erroneo")
+                    continue
+            
+            elif eleccion == 2:
+                sleep(1)
+                print("ok has elegido curarte")
+                sleep(1)
+                jugador.curacion()
+                SeCuro = True
+
+            else:
+                print("has introducido un valor erroneo por favor intentar de nuevo")
+                continue
+
+            if enemigo.vida <= 0:
+                print('fui derrotado')
+                break;
+
+            if ataco == True or SeCuro == True:
+                print("ahora le toca al soldado atacar")
+                num1, num2 = 0, 2
+                Resultado = random.randint(num1, num2)
+                
+                if Resultado == 0:
+                    print("el soldado ha elegido hacer un ataque normal")
+                    enemigo.RestarAtaquesNormales(jugador, enemigo)
+                    ataco = False
+                    SeCuro = False
+                    del(num1, num2)
+                
+                elif Resultado == 1:
+                    print('el soldado eligio su ataque especial')
+                    enemigo.ejeucionEspecial(enemigo, jugador)
+                    ataco = False
+                    SeCuro = False
+                    del(num1, num2)
+
+                elif Resultado == 2:
+                    print("el soldado eligio curarse")
+                    enemigo.curacion()
+                    ataco = False
+                    SeCuro = False
+                    del(num1, num2)
+
+    batallaEspadaMetalica(jugador, soldadov2)
 else:
-    print("no has elegido ningun camino \n pero... \n intentalo de nuevo ")
-    decicion = input("izquierda o derecha")
-    decicion = input("izquierda o derecha")
-    decicion = input("izquierda o derecha")
-
-print("y al final del dia terminaste con tu mision")
-time.sleep(1)
-print('mejoraste de nivel a nivel 3')
-time.sleep(1)
-player.subir_nivel(3)
-print(f"tu nivel ahora es: {player.nivel}")
-
-print("fin del capitulo 1")
-time.sleep(1)
-print("continuara")
-time.sleep(2)
-print(".")
-time.sleep(2)
-print('.')
-time.sleep(2)
-print('.')
-
-print("fin del capitulo 1")
+    print("si no subes de nivel no puedes seguir con la historia :(")

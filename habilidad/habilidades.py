@@ -1,4 +1,3 @@
-
 class habilidades():
     
     plus =  5

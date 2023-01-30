@@ -1,0 +1,5 @@
+rehacer la clase de encantaminetos #fuego y rayo
+hacer una buena historia
+hay veces que entra en bucle curandose infinitamente y que ponerle un restriccion con un ### if vida <= 0:continue
+y tampoco me lee que el enemigo haya perdido
+testear el nivel si le dices que no
