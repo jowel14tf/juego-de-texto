@@ -13,16 +13,16 @@ class personaje():
         self.nivel = 0
 
     def recompensas(self):
-        print("ya que subiste de nivel")
+        print("tu: subi de nivel")
         sleep(1)
-        print("tu vida se multiplicara por 0.4")
+        print("tu: mi vida se multiplicara por 0.4")
         sleep(1)
-        print(f"tu vida era de {self.vida}")
+        print(f"tu: mi vida era de {self.vida}")
         porcentaje = self.vida * 0.4
         self.vida = self.vida + porcentaje
         self.vida = int(self.vida)
         sleep(1)
-        print(f"ahora tu vida se le sumara {porcentaje} y ahora tu vida es: {self.vida}")
+        print(f"tu: ahora mi vida se le sumara {porcentaje} y ahora mi vida es: {self.vida}")
         self.max_vida = self.vida
         self.min_vida = self.max_vida - self.pocion
         sleep(1)
@@ -31,9 +31,9 @@ class personaje():
     def subir_nivel(self):
         requerimientos = 100
         while self.exp >= requerimientos:
-            print("reuniste la suficiente experiencia para subir de nivel")
+            print("tu: reuni la suficiente experiencia para subir de nivel")
             sleep(1)
-            decicion = input("quieres subir de nivel Y/N")
+            decicion = input("?: quiero subir de nivel Y/N")
             sleep(1)
             global nivel
             global exp
@@ -41,53 +41,55 @@ class personaje():
             if decicion == 'Y':
                 self.nivel += 1
                 self.exp -= 100
-                print(f"ahora eres de nivel {self.nivel}")
+                print(f"tu: ahora mi nivel es: {self.nivel}")
                 sleep(1)
-                eleccion = input("quieres recibir tu recompensa Y/N")
+                eleccion = input("?: quiero recibir mi recompensa Y/N")
                 eleccion = eleccion.upper()
                 if eleccion == 'Y':
                     self.recompensas()
                     continue;
                 else:
-                    print('ok')
+                    print('tu: no gracias no soy codicioso')
             elif decicion == 'N':
                 sleep(0.5)
                 print('ok')
                 break;
             else:
-                print("valor incorrecto por favor verifique bien")
+                print("tu: que puse? ")
         return ""
 
     def curacion(self):
         if self.vida > self.max_vida:
             sleep(2)
-            print("te has pasado del limite de vida establecido te retauraremos a tu vida original")
+            print("tu: me he pasado del limite de vida me pondran al original")
             sleep(2)
         
         elif self.vida == self.max_vida:
             sleep(2)
-            print("tienes tu vida llena no hace falta curarse")
+            print("tu: tengo mi vida llena para que quiero mas curacion? ")
             sleep(2)
-            print(f"tu vida era de {self.vida}")
+            print(f"tu: mi vida era: {self.vida}")
             sleep(1)
             self.vida = self.max_vida
-            print(f'ahora tu vida es de {self.vida}')
+            print(f'tu: ahora mi vida es: {self.vida}')
             sleep(1)
         elif self.vida <= self.min_vida:
-            print(f"tu vida era de: {self.vida}")
+            print(f"tu: mi vida era de: {self.vida}")
             sleep(1.5)
             self.vida = self.vida + self.pocion
-            print(f"ahora tu vida es: {self.vida}")
+            print(f"tu: ahora mi vida es: {self.vida}")
             sleep(2)
+        else:
+            print("tu: no cumplo con los requesitos para curarme")
         return ""
         
     def restablecer_vida(self):
         sleep(2)
-        print(f'tu vida era de: {self.vida}')
+        print(f'tu: mi vida era de: {self.vida}')
         sleep(2)
         if self.vida != self.max_vida:
             self.vida = self.max_vida
-        return print(f"ahora tu vida es: {self.vida}")
+        return print(f"tu: ahora mi vida es: {self.vida} :)")
         
 
 class personajev2():
