@@ -1,8 +1,0 @@
-el archivo soldado esta listo
-el jugador ya listo para la mejora de 1.0V
-el arma llamada espadavieja esta hecha
-listos los ataque y la curacion del jugador
-listo el sistema de batalla de la primera lucha
-el metodo furia de la espada metalica ya esta hecho
-la clase soldadoF2 esta listo
-listo los encantamiento fuego y agua
