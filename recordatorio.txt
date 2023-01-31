@@ -1,9 +1,0 @@
-rehacer la clase de encantaminetos #fuego y rayo
-hacer una buena historia
-hay veces que entra en bucle curandose infinitamente y que ponerle un restriccion con un ### if vida <= 0:continue
-y tampoco me lee que el enemigo haya perdido
-en algun momento hacer un sistema de pociones
-GUI
-  mejorar la gui/ los tiempos de espera
-  hacer tu, enemigo, lider
-chequear la derrota del enemigo
